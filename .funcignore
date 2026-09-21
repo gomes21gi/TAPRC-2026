@@ -1,5 +1,7 @@
 .git*
-.venv/
-__pycache__/
-.python_packages/
-tests/
+.vscode
+__azurite_db*__.json
+__blobstorage__
+__queuestorage__
+local.settings.json
+test

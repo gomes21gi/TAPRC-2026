@@ -1,22 +1,26 @@
-import datetime
 import logging
-import os
-
 import azure.functions as func
-
 
 app = func.FunctionApp()
 
+@app.schedule(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=True,
+              use_monitor=False) 
+def timer_trigger_turmac(myTimer: func.TimerRequest) -> None:
+    if myTimer.past_due:
+        logging.info('The timer is past due!')
 
-@app.timer_trigger(
-    schedule=os.getenv("TIMER_SCHEDULE", "0 */5 * * * *"),
-    arg_name="timer",
-    run_on_startup=False,
-    use_monitor=True,
-)
-def timer_trigger(timer: func.TimerRequest) -> None:
-    utc_timestamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
-    logging.info("Timer Trigger executado em %s", utc_timestamp)
+    logging.info('Hello Word!')
 
-    if timer.past_due:
-        logging.warning("O Timer Trigger esta atrasado.")
+@app.route(route="http_trigger", auth_level=func.AuthLevel.ANONYMOUS)
+def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
+
+    name = req.params.get('name')
+
+    if name:
+        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
+    else:
+        return func.HttpResponse(
+             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
+             status_code=200
+        )
