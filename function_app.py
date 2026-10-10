@@ -486,11 +486,6 @@ def timer_trigger_chama_http(callTimer: func.TimerRequest) -> None:
         "ECHO_FUNCTION_URL",
         "https://funcapp-giovana001-hzhvefgud6e2hyc6.canadacentral-01.azurewebsites.net/api/http_trigger_v3"
     )
-
-
-
-
-    
     name = "ola-do-timer"
     url = f"{base_url}?{urllib.parse.urlencode({'name': name})}"
 
