@@ -1,23 +1,26 @@
 import logging
-import azure.functions as func
 import os
-import urllib.request
 import urllib.parse
+import urllib.request
+
+import azure.functions as func
 import pyodbc
 
 app = func.FunctionApp()
 
-#chamado
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-                use_monitor=False)
+
+# chamado
+@app.timer_trigger(
+    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+)
 def extract_chamado(myTimer: func.TimerRequest) -> None:
-    #importar variáveis de ambiente
+    # importar variáveis de ambiente
     user_sql = os.getenv("USER")
     database_sql = os.getenv("DATABASE")
     host_sql = os.getenv("HOST")
     password_sql = os.getenv("PASSWORD")
 
-    #como criar uma connection string usando pyodbc
+    # como criar uma connection string usando pyodbc
     conn_str = (
         "DRIVER={ODBC Driver 18 for SQL Server};"
         f"SERVER={host_sql};"
@@ -53,21 +56,23 @@ def extract_chamado(myTimer: func.TimerRequest) -> None:
     logging.info(host_sql)
     logging.info(password_sql)
 
-    #Criar a conexão com o banco de dados
-    #Fazer um select * na tabela
-    #Imprimir os dados da tabela usando logging.info
+    # Criar a conexão com o banco de dados
+    # Fazer um select * na tabela
+    # Imprimir os dados da tabela usando logging.info
 
-#Chamado_sla
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-                use_monitor=False)
+
+# Chamado_sla
+@app.timer_trigger(
+    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+)
 def extract_chamado_sla(myTimer: func.TimerRequest) -> None:
-    #importar variáveis de ambiente
+    # importar variáveis de ambiente
     user_sql = os.getenv("USER")
     database_sql = os.getenv("DATABASE")
     host_sql = os.getenv("HOST")
     password_sql = os.getenv("PASSWORD")
 
-    #como criar uma connection string usando pyodbc
+    # como criar uma connection string usando pyodbc
     conn_str = (
         "DRIVER={ODBC Driver 18 for SQL Server};"
         f"SERVER={host_sql};"
@@ -103,17 +108,19 @@ def extract_chamado_sla(myTimer: func.TimerRequest) -> None:
     logging.info(host_sql)
     logging.info(password_sql)
 
-#Chamado_status_historico
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-                use_monitor=False)
+
+# Chamado_status_historico
+@app.timer_trigger(
+    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+)
 def extract_chamado_status_historico(myTimer: func.TimerRequest) -> None:
-    #importar variáveis de ambiente
+    # importar variáveis de ambiente
     user_sql = os.getenv("USER")
     database_sql = os.getenv("DATABASE")
     host_sql = os.getenv("HOST")
     password_sql = os.getenv("PASSWORD")
 
-    #como criar uma connection string usando pyodbc
+    # como criar uma connection string usando pyodbc
     conn_str = (
         "DRIVER={ODBC Driver 18 for SQL Server};"
         f"SERVER={host_sql};"
@@ -149,17 +156,19 @@ def extract_chamado_status_historico(myTimer: func.TimerRequest) -> None:
     logging.info(host_sql)
     logging.info(password_sql)
 
-#cliente_organizacao
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-                use_monitor=False)
+
+# cliente_organizacao
+@app.timer_trigger(
+    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+)
 def extract_cliente_organizacao(myTimer: func.TimerRequest) -> None:
-    #importar variáveis de ambiente
+    # importar variáveis de ambiente
     user_sql = os.getenv("USER")
     database_sql = os.getenv("DATABASE")
     host_sql = os.getenv("HOST")
     password_sql = os.getenv("PASSWORD")
 
-    #como criar uma connection string usando pyodbc
+    # como criar uma connection string usando pyodbc
     conn_str = (
         "DRIVER={ODBC Driver 18 for SQL Server};"
         f"SERVER={host_sql};"
@@ -195,17 +204,19 @@ def extract_cliente_organizacao(myTimer: func.TimerRequest) -> None:
     logging.info(host_sql)
     logging.info(password_sql)
 
-#analista
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-            use_monitor=False)
+
+# analista
+@app.timer_trigger(
+    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+)
 def extract_analista(myTimer: func.TimerRequest) -> None:
-    #importar variáveis de ambiente
+    # importar variáveis de ambiente
     user_sql = os.getenv("USER")
     database_sql = os.getenv("DATABASE")
     host_sql = os.getenv("HOST")
     password_sql = os.getenv("PASSWORD")
 
-    #como criar uma connection string usando pyodbc
+    # como criar uma connection string usando pyodbc
     conn_str = (
         "DRIVER={ODBC Driver 18 for SQL Server};"
         f"SERVER={host_sql};"
@@ -241,17 +252,19 @@ def extract_analista(myTimer: func.TimerRequest) -> None:
     logging.info(host_sql)
     logging.info(password_sql)
 
-#categoria
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-            use_monitor=False)
+
+# categoria
+@app.timer_trigger(
+    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+)
 def extract_categoria(myTimer: func.TimerRequest) -> None:
-    #importar variáveis de ambiente
+    # importar variáveis de ambiente
     user_sql = os.getenv("USER")
     database_sql = os.getenv("DATABASE")
     host_sql = os.getenv("HOST")
     password_sql = os.getenv("PASSWORD")
 
-    #como criar uma connection string usando pyodbc
+    # como criar uma connection string usando pyodbc
     conn_str = (
         "DRIVER={ODBC Driver 18 for SQL Server};"
         f"SERVER={host_sql};"
@@ -287,10 +300,12 @@ def extract_categoria(myTimer: func.TimerRequest) -> None:
     logging.info(host_sql)
     logging.info(password_sql)
 
-#csat_avaliacao e fila
-#Primeira função - duda
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer",
-                   run_on_startup=False, use_monitor=False)
+
+# csat_avaliacao e fila
+# Primeira função - duda
+@app.timer_trigger(
+    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+)
 def extract_csat_avaliacao(myTimer: func.TimerRequest) -> None:
 
     user_sql = os.getenv("USER")
@@ -323,14 +338,13 @@ def extract_csat_avaliacao(myTimer: func.TimerRequest) -> None:
                     logging.info(f"CSAT_AVALIACAO: {row}")
 
     except pyodbc.Error as e:
-        logging.error(
-            f"Erro ao conectar ou consultar a tabela csat_avaliacao: {e}"
-        )
+        logging.error(f"Erro ao conectar ou consultar a tabela csat_avaliacao: {e}")
 
 
-#Segunda função - duda
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer",
-                   run_on_startup=False, use_monitor=False)
+# Segunda função - duda
+@app.timer_trigger(
+    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+)
 def extract_fila(myTimer: func.TimerRequest) -> None:
 
     user_sql = os.getenv("USER")
@@ -363,12 +377,13 @@ def extract_fila(myTimer: func.TimerRequest) -> None:
                     logging.info(f"FILA: {row}")
 
     except pyodbc.Error as e:
-        logging.error(
-            f"Erro ao conectar ou consultar a tabela fila: {e}"
-        )
+        logging.error(f"Erro ao conectar ou consultar a tabela fila: {e}")
 
-#sla
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False)
+
+# sla
+@app.timer_trigger(
+    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+)
 def extract_sla(myTimer: func.TimerRequest) -> None:
     user_sql = os.getenv("USER")
     database_sql = os.getenv("DATABASE")
@@ -401,8 +416,10 @@ def extract_sla(myTimer: func.TimerRequest) -> None:
         logging.error(f"Erro ao conectar ou consultar a tabela sla: {e}")
 
 
-#solicitante
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False)
+# solicitante
+@app.timer_trigger(
+    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+)
 def extract_solicitante(myTimer: func.TimerRequest) -> None:
     user_sql = os.getenv("USER")
     database_sql = os.getenv("DATABASE")
@@ -433,58 +450,65 @@ def extract_solicitante(myTimer: func.TimerRequest) -> None:
 
     except pyodbc.Error as e:
         logging.error(f"Erro ao conectar ou consultar a tabela solicitante: {e}")
-@app.schedule(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=True,
-              use_monitor=False)
+
+
+@app.schedule(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=True, use_monitor=False)
 def timer_trigger_turmac(myTimer: func.TimerRequest) -> None:
     if myTimer.past_due:
-        logging.info('The timer is past due!')
+        logging.info("The timer is past due!")
 
-    logging.info('Hello Word!')
+    logging.info("Hello Word!")
+
 
 @app.route(route="http_trigger", auth_level=func.AuthLevel.ANONYMOUS)
 def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
+    logging.info("Python HTTP trigger function processed a request.")
 
-    name = req.params.get('name')
+    name = req.params.get("name")
 
     if name:
-        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
+        return func.HttpResponse(
+            f"Hello, {name}. This HTTP triggered function executed successfully."
+        )
     else:
         return func.HttpResponse(
-             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-             status_code=200
+            "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
+            status_code=200,
         )
+
 
 @app.route(route="http_trigger_v3", auth_level=func.AuthLevel.ANONYMOUS)
 def http_trigger_v3(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
+    logging.info("Python HTTP trigger function processed a request.")
 
-    name = req.params.get('name')
+    name = req.params.get("name")
     if not name:
         try:
             req_body = req.get_json()
         except ValueError:
             pass
         else:
-            name = req_body.get('name')
+            name = req_body.get("name")
 
     if name:
         return func.HttpResponse(f"Valor recebido: {name}. - respondido pela http_trigger_v3.")
     else:
         return func.HttpResponse(
-             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-             status_code=200
+            "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
+            status_code=200,
         )
 
-@app.schedule(schedule="0 */2 * * * *", arg_name="callTimer", run_on_startup=True,
-              use_monitor=False)
+
+@app.schedule(
+    schedule="0 */2 * * * *", arg_name="callTimer", run_on_startup=True, use_monitor=False
+)
 def timer_trigger_chama_http(callTimer: func.TimerRequest) -> None:
     if callTimer.past_due:
-        logging.info('O timer (chamador) esta atrasado!')
+        logging.info("O timer (chamador) esta atrasado!")
 
     base_url = os.environ.get(
         "ECHO_FUNCTION_URL",
-        "https://funcapp-giovana001-hzhvefgud6e2hyc6.canadacentral-01.azurewebsites.net/api/http_trigger_v3"
+        "https://funcapp-giovana001-hzhvefgud6e2hyc6.canadacentral-01.azurewebsites.net/api/http_trigger_v3",
     )
     name = "ola-do-timer"
     url = f"{base_url}?{urllib.parse.urlencode({'name': name})}"
