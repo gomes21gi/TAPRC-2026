@@ -114,7 +114,7 @@ def extract_chamado_sla(myTimer: func.TimerRequest) -> None:
             rows = cursor.fetchall()
 
             # imprimir os dados da tabela usando logging.info()
-                        if not rows:
+            if not rows:
                 logging.info("A consulta não retornou nenhum dado.")
             else:
                 colunas = [c[0] for c in cursor.description]
@@ -162,7 +162,7 @@ def extract_chamado_status_historico(myTimer: func.TimerRequest) -> None:
             rows = cursor.fetchall()
 
             # imprimir os dados da tabela usando logging.info()
-                        if not rows:
+            if not rows:
                 logging.info("A consulta não retornou nenhum dado.")
             else:
                 colunas = [c[0] for c in cursor.description]
@@ -391,7 +391,7 @@ def extract_fila(myTimer: func.TimerRequest) -> None:
             cursor.execute("SELECT * FROM itsm.fila")
             rows = cursor.fetchall()
 
-                        if not rows:
+           if not rows:
                 logging.info("A consulta não retornou nenhum dado.")
             else:
                 colunas = [c[0] for c in cursor.description]
@@ -427,7 +427,7 @@ def extract_sla(myTimer: func.TimerRequest) -> None:
             cursor.execute("SELECT * FROM itsm.sla")
             rows = cursor.fetchall()
 
-                       if not rows:
+            if not rows:
                 logging.info("A consulta não retornou nenhum dado.")
             else:
                 colunas = [c[0] for c in cursor.description]
