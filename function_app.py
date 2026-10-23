@@ -32,7 +32,7 @@ def salvar_na_bronze(entidade, colunas, rows):
 
 # chamado
 @app.timer_trigger(
-    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+    schedule="0 0 * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
 )
 def extract_chamado(myTimer: func.TimerRequest) -> None:
     # importar variáveis de ambiente
@@ -84,7 +84,7 @@ def extract_chamado(myTimer: func.TimerRequest) -> None:
 
 # Chamado_sla
 @app.timer_trigger(
-    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+    schedule="0 0 * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
 )
 def extract_chamado_sla(myTimer: func.TimerRequest) -> None:
     # importar variáveis de ambiente
@@ -132,7 +132,7 @@ def extract_chamado_sla(myTimer: func.TimerRequest) -> None:
 
 # Chamado_status_historico
 @app.timer_trigger(
-    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+    schedule="0 0 * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
 )
 def extract_chamado_status_historico(myTimer: func.TimerRequest) -> None:
     # importar variáveis de ambiente
@@ -180,7 +180,7 @@ def extract_chamado_status_historico(myTimer: func.TimerRequest) -> None:
 
 # cliente_organizacao
 @app.timer_trigger(
-    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+    schedule="0 0 * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
 )
 def extract_cliente_organizacao(myTimer: func.TimerRequest) -> None:
     # importar variáveis de ambiente
@@ -228,7 +228,7 @@ def extract_cliente_organizacao(myTimer: func.TimerRequest) -> None:
 
 # analista
 @app.timer_trigger(
-    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+    schedule="0 0 * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
 )
 def extract_analista(myTimer: func.TimerRequest) -> None:
     # importar variáveis de ambiente
@@ -276,7 +276,7 @@ def extract_analista(myTimer: func.TimerRequest) -> None:
 
 # categoria
 @app.timer_trigger(
-    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+    schedule="0 0 * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
 )
 def extract_categoria(myTimer: func.TimerRequest) -> None:
     # importar variáveis de ambiente
@@ -325,7 +325,7 @@ def extract_categoria(myTimer: func.TimerRequest) -> None:
 # csat_avaliacao e fila
 # Primeira função - duda
 @app.timer_trigger(
-    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+    schedule="0 0 * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
 )
 def extract_csat_avaliacao(myTimer: func.TimerRequest) -> None:
 
@@ -364,7 +364,7 @@ def extract_csat_avaliacao(myTimer: func.TimerRequest) -> None:
 
 # Segunda função - duda
 @app.timer_trigger(
-    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+    schedule="0 0 * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
 )
 def extract_fila(myTimer: func.TimerRequest) -> None:
 
@@ -403,7 +403,7 @@ def extract_fila(myTimer: func.TimerRequest) -> None:
 
 # sla
 @app.timer_trigger(
-    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+    schedule="0 0 * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
 )
 def extract_sla(myTimer: func.TimerRequest) -> None:
     user_sql = os.getenv("USER")
@@ -439,7 +439,7 @@ def extract_sla(myTimer: func.TimerRequest) -> None:
 
 # solicitante
 @app.timer_trigger(
-    schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
+    schedule="0 0 * * * *", arg_name="myTimer", run_on_startup=False, use_monitor=False
 )
 def extract_solicitante(myTimer: func.TimerRequest) -> None:
     user_sql = os.getenv("USER")
@@ -473,7 +473,7 @@ def extract_solicitante(myTimer: func.TimerRequest) -> None:
         logging.error(f"Erro ao conectar ou consultar a tabela solicitante: {e}")
 
 
-@app.schedule(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=True, use_monitor=False)
+@app.schedule(schedule="0 0 * * * *", arg_name="myTimer", run_on_startup=True, use_monitor=False)
 def timer_trigger_turmac(myTimer: func.TimerRequest) -> None:
     if myTimer.past_due:
         logging.info("The timer is past due!")
