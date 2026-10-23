@@ -6,8 +6,29 @@ import urllib.request
 import azure.functions as func
 import pyodbc
 
+import json
+from datetime import datetime, timezone
+from azure.storage.blob import BlobServiceClient, ContentSettings
+
 app = func.FunctionApp()
 
+def salvar_na_bronze(entidade, colunas, rows):
+    agora = datetime.now(timezone.utc)
+    caminho = (
+        f"itsm/{entidade}/ano={agora:%Y}/mes={agora:%m}/dia={agora:%d}/"
+        f"{entidade}_{agora:%Y%m%dT%H%M%SZ}.json"
+    )
+    dados = [dict(zip(colunas, row)) for row in rows]
+    conteudo = json.dumps(dados, default=str, ensure_ascii=False)
+
+    service = BlobServiceClient.from_connection_string(os.getenv("STORAGE_CONNECTION_STRING"))
+    blob = service.get_blob_client(container="bronze", blob=caminho)
+    blob.upload_blob(
+        conteudo.encode("utf-8"),
+        overwrite=True,
+        content_settings=ContentSettings(content_type="application/json"),
+    )
+    logging.info(f"{entidade}: {len(dados)} registros gravados em bronze/{caminho}")
 
 # chamado
 @app.timer_trigger(
@@ -44,8 +65,8 @@ def extract_chamado(myTimer: func.TimerRequest) -> None:
             if not rows:
                 logging.info("A consulta não retornou nenhum dado.")
             else:
-                for row in rows:
-                    logging.info(f"Registro encontrado: {row}")
+                colunas = [c[0] for c in cursor.description]
+                salvar_na_bronze("chamado", colunas, rows)
 
     except pyodbc.Error as e:
         logging.error(f"Erro ao conectar ou consultar o banco de dados: {e}")
@@ -93,11 +114,11 @@ def extract_chamado_sla(myTimer: func.TimerRequest) -> None:
             rows = cursor.fetchall()
 
             # imprimir os dados da tabela usando logging.info()
-            if not rows:
+                        if not rows:
                 logging.info("A consulta não retornou nenhum dado.")
             else:
-                for row in rows:
-                    logging.info(f"Registro encontrado: {row}")
+                colunas = [c[0] for c in cursor.description]
+                salvar_na_bronze("chamado_sla", colunas, rows)
 
     except pyodbc.Error as e:
         logging.error(f"Erro ao conectar ou consultar o banco de dados: {e}")
@@ -141,11 +162,11 @@ def extract_chamado_status_historico(myTimer: func.TimerRequest) -> None:
             rows = cursor.fetchall()
 
             # imprimir os dados da tabela usando logging.info()
-            if not rows:
+                        if not rows:
                 logging.info("A consulta não retornou nenhum dado.")
             else:
-                for row in rows:
-                    logging.info(f"Registro encontrado: {row}")
+                colunas = [c[0] for c in cursor.description]
+                salvar_na_bronze("chamado_status_historico", colunas, rows)
 
     except pyodbc.Error as e:
         logging.error(f"Erro ao conectar ou consultar o banco de dados: {e}")
@@ -192,8 +213,8 @@ def extract_cliente_organizacao(myTimer: func.TimerRequest) -> None:
             if not rows:
                 logging.info("A consulta não retornou nenhum dado.")
             else:
-                for row in rows:
-                    logging.info(f"Registro encontrado: {row}")
+                colunas = [c[0] for c in cursor.description]
+                salvar_na_bronze("cliente_organizacao", colunas, rows)
 
     except pyodbc.Error as e:
         logging.error(f"Erro ao conectar ou consultar o banco de dados: {e}")
@@ -240,8 +261,8 @@ def extract_analista(myTimer: func.TimerRequest) -> None:
             if not rows:
                 logging.info("A consulta não retornou nenhum dado.")
             else:
-                for row in rows:
-                    logging.info(f"Registro encontrado: {row}")
+                colunas = [c[0] for c in cursor.description]
+                salvar_na_bronze("analista", colunas, rows)
 
     except pyodbc.Error as e:
         logging.error(f"Erro ao conectar ou consultar o banco de dados: {e}")
@@ -288,8 +309,8 @@ def extract_categoria(myTimer: func.TimerRequest) -> None:
             if not rows:
                 logging.info("A consulta não retornou nenhum dado.")
             else:
-                for row in rows:
-                    logging.info(f"Registro encontrado: {row}")
+                colunas = [c[0] for c in cursor.description]
+                salvar_na_bronze("categoria", colunas, rows)
 
     except pyodbc.Error as e:
         logging.error(f"Erro ao conectar ou consultar o banco de dados: {e}")
@@ -332,10 +353,10 @@ def extract_csat_avaliacao(myTimer: func.TimerRequest) -> None:
             rows = cursor.fetchall()
 
             if not rows:
-                logging.info("A tabela csat_avaliacao não retornou dados.")
+                logging.info("A consulta não retornou nenhum dado.")
             else:
-                for row in rows:
-                    logging.info(f"CSAT_AVALIACAO: {row}")
+                colunas = [c[0] for c in cursor.description]
+                salvar_na_bronze("csat_avaliacao", colunas, rows)
 
     except pyodbc.Error as e:
         logging.error(f"Erro ao conectar ou consultar a tabela csat_avaliacao: {e}")
@@ -370,11 +391,11 @@ def extract_fila(myTimer: func.TimerRequest) -> None:
             cursor.execute("SELECT * FROM itsm.fila")
             rows = cursor.fetchall()
 
-            if not rows:
-                logging.info("A tabela fila não retornou dados.")
+                        if not rows:
+                logging.info("A consulta não retornou nenhum dado.")
             else:
-                for row in rows:
-                    logging.info(f"FILA: {row}")
+                colunas = [c[0] for c in cursor.description]
+                salvar_na_bronze("fila", colunas, rows)
 
     except pyodbc.Error as e:
         logging.error(f"Erro ao conectar ou consultar a tabela fila: {e}")
@@ -406,11 +427,11 @@ def extract_sla(myTimer: func.TimerRequest) -> None:
             cursor.execute("SELECT * FROM itsm.sla")
             rows = cursor.fetchall()
 
-            if not rows:
-                logging.info("A tabela sla não retornou dados.")
+                       if not rows:
+                logging.info("A consulta não retornou nenhum dado.")
             else:
-                for row in rows:
-                    logging.info(f"SLA: {row}")
+                colunas = [c[0] for c in cursor.description]
+                salvar_na_bronze("sla", colunas, rows)
 
     except pyodbc.Error as e:
         logging.error(f"Erro ao conectar ou consultar a tabela sla: {e}")
@@ -443,10 +464,10 @@ def extract_solicitante(myTimer: func.TimerRequest) -> None:
             rows = cursor.fetchall()
 
             if not rows:
-                logging.info("A tabela solicitante não retornou dados.")
+                logging.info("A consulta não retornou nenhum dado.")
             else:
-                for row in rows:
-                    logging.info(f"SOLICITANTE: {row}")
+                colunas = [c[0] for c in cursor.description]
+                salvar_na_bronze("solicitante", colunas, rows)
 
     except pyodbc.Error as e:
         logging.error(f"Erro ao conectar ou consultar a tabela solicitante: {e}")
