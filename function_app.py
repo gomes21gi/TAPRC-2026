@@ -63,7 +63,7 @@ def extract_chamado(myTimer: func.TimerRequest) -> None:
 
         # Grava o arquivo no contêiner bronze do Data Lake, particionado por data
         now = datetime.now(timezone.utc)
-        file_path = f"chamado/{now:%Y/%m/%d}/chamado_{now:%Y%m%d_%H%M%S}.csv"
+        file_path = f"itsm/chamado/{now:%Y/%m/%d}/chamado_{now:%Y%m%d_%H%M%S}.csv"
 
         #itsm/chamado/year=2024/month=06/day=05/chamado_20240605_123456.csv
         #file_path = f"itsm/chamado/year={now:%Y}/month={now:%m}/day={now:%d}/chamado_{now:%Y%m%d_%H%M%S}.csv"
@@ -134,7 +134,7 @@ def extract_chamado_sla(myTimer: func.TimerRequest) -> None:
 
         # Grava o arquivo no contêiner bronze do Data Lake, particionado por data
         now = datetime.now(timezone.utc)
-        file_path = f"chamado_sla/{now:%Y/%m/%d}/chamado_sla_{now:%Y%m%d_%H%M%S}.csv"
+        file_path = f"itsm/chamado_sla/{now:%Y/%m/%d}/chamado_sla_{now:%Y%m%d_%H%M%S}.csv"
 
         #itsm/chamado_sla/year=2024/month=06/day=05/chamado_sla_20240605_123456.csv
         #file_path = f"itsm/chamado_sla/year={now:%Y}/month={now:%m}/day={now:%d}/chamado_sla_{now:%Y%m%d_%H%M%S}.csv"
@@ -205,7 +205,7 @@ def extract_chamado_status_historico(myTimer: func.TimerRequest) -> None:
 
         # Grava o arquivo no contêiner bronze do Data Lake, particionado por data
         now = datetime.now(timezone.utc)
-        file_path = f"chamado_status_historico/{now:%Y/%m/%d}/chamado_status_historico_{now:%Y%m%d_%H%M%S}.csv"
+        file_path = f"itsm/chamado_status_historico/{now:%Y/%m/%d}/chamado_status_historico_{now:%Y%m%d_%H%M%S}.csv"
 
         #itsm/chamado_status_historico/year=2024/month=06/day=05/chamado_status_historico_20240605_123456.csv
         #file_path = f"itsm/chamado_status_historico/year={now:%Y}/month={now:%m}/day={now:%d}/chamado_status_historico_{now:%Y%m%d_%H%M%S}.csv"
@@ -276,7 +276,7 @@ def extract_cliente_organizacao(myTimer: func.TimerRequest) -> None:
 
         # Grava o arquivo no contêiner bronze do Data Lake, particionado por data
         now = datetime.now(timezone.utc)
-        file_path = f"cliente_organizacao/{now:%Y/%m/%d}/cliente_organizacao_{now:%Y%m%d_%H%M%S}.csv"
+        file_path = f"itsm/cliente_organizacao/{now:%Y/%m/%d}/cliente_organizacao_{now:%Y%m%d_%H%M%S}.csv"
 
         #itsm/cliente_organizacao/year=2024/month=06/day=05/cliente_organizacao_20240605_123456.csv
         #file_path = f"itsm/cliente_organizacao/year={now:%Y}/month={now:%m}/day={now:%d}/cliente_organizacao_{now:%Y%m%d_%H%M%S}.csv"
@@ -347,7 +347,7 @@ def extract_analista(myTimer: func.TimerRequest) -> None:
 
         # Grava o arquivo no contêiner bronze do Data Lake, particionado por data
         now = datetime.now(timezone.utc)
-        file_path = f"analista/{now:%Y/%m/%d}/analista_{now:%Y%m%d_%H%M%S}.csv"
+        file_path = f"itsm/analista/{now:%Y/%m/%d}/analista_{now:%Y%m%d_%H%M%S}.csv"
 
         #itsm/analista/year=2024/month=06/day=05/analista_20240605_123456.csv
         #file_path = f"itsm/analista/year={now:%Y}/month={now:%m}/day={now:%d}/analista_{now:%Y%m%d_%H%M%S}.csv"
@@ -418,7 +418,7 @@ def extract_categoria(myTimer: func.TimerRequest) -> None:
 
         # Grava o arquivo no contêiner bronze do Data Lake, particionado por data
         now = datetime.now(timezone.utc)
-        file_path = f"categoria/{now:%Y/%m/%d}/categoria_{now:%Y%m%d_%H%M%S}.csv"
+        file_path = f"itsm/categoria/{now:%Y/%m/%d}/categoria_{now:%Y%m%d_%H%M%S}.csv"
 
         #itsm/categoria/year=2024/month=06/day=05/categoria_20240605_123456.csv
         #file_path = f"itsm/categoria/year={now:%Y}/month={now:%m}/day={now:%d}/categoria_{now:%Y%m%d_%H%M%S}.csv"
@@ -489,7 +489,7 @@ def extract_csat_avaliacao(myTimer: func.TimerRequest) -> None:
 
         # Grava o arquivo no contêiner bronze do Data Lake, particionado por data
         now = datetime.now(timezone.utc)
-        file_path = f"csat_avaliacao/{now:%Y/%m/%d}/csat_avaliacao_{now:%Y%m%d_%H%M%S}.csv"
+        file_path = f"itsm/csat_avaliacao/{now:%Y/%m/%d}/csat_avaliacao_{now:%Y%m%d_%H%M%S}.csv"
 
         #itsm/csat_avaliacao/year=2024/month=06/day=05/csat_avaliacao_20240605_123456.csv
         #file_path = f"itsm/csat_avaliacao/year={now:%Y}/month={now:%m}/day={now:%d}/csat_avaliacao_{now:%Y%m%d_%H%M%S}.csv"
@@ -560,7 +560,7 @@ def extract_fila(myTimer: func.TimerRequest) -> None:
 
         # Grava o arquivo no contêiner bronze do Data Lake, particionado por data
         now = datetime.now(timezone.utc)
-        file_path = f"fila/{now:%Y/%m/%d}/fila_{now:%Y%m%d_%H%M%S}.csv"
+        file_path = f"itsm/fila/{now:%Y/%m/%d}/fila_{now:%Y%m%d_%H%M%S}.csv"
 
         #itsm/fila/year=2024/month=06/day=05/fila_20240605_123456.csv
         #file_path = f"itsm/fila/year={now:%Y}/month={now:%m}/day={now:%d}/fila_{now:%Y%m%d_%H%M%S}.csv"
@@ -631,7 +631,7 @@ def extract_sla(myTimer: func.TimerRequest) -> None:
 
         # Grava o arquivo no contêiner bronze do Data Lake, particionado por data
         now = datetime.now(timezone.utc)
-        file_path = f"sla/{now:%Y/%m/%d}/sla_{now:%Y%m%d_%H%M%S}.csv"
+        file_path = f"itsm/sla/{now:%Y/%m/%d}/sla_{now:%Y%m%d_%H%M%S}.csv"
 
         #itsm/sla/year=2024/month=06/day=05/sla_20240605_123456.csv
         #file_path = f"itsm/sla/year={now:%Y}/month={now:%m}/day={now:%d}/sla_{now:%Y%m%d_%H%M%S}.csv"
@@ -702,7 +702,7 @@ def extract_solicitante(myTimer: func.TimerRequest) -> None:
 
         # Grava o arquivo no contêiner bronze do Data Lake, particionado por data
         now = datetime.now(timezone.utc)
-        file_path = f"solicitante/{now:%Y/%m/%d}/solicitante_{now:%Y%m%d_%H%M%S}.csv"
+        file_path = f"itsm/solicitante/{now:%Y/%m/%d}/solicitante_{now:%Y%m%d_%H%M%S}.csv"
 
         #itsm/solicitante/year=2024/month=06/day=05/solicitante_20240605_123456.csv
         #file_path = f"itsm/solicitante/year={now:%Y}/month={now:%m}/day={now:%d}/solicitante_{now:%Y%m%d_%H%M%S}.csv"
