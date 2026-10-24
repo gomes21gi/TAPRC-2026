@@ -3,4 +3,7 @@
 # azure-monitor-opentelemetry
 
 azure-functions
-zure-storage-blob
+pyodbc
+azure-storage-file-datalake
+ruff
+logging
